@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Sell
+{% endblock %}
+
+{% block main %}
+    <form action="/sell" method="POST">
+        <div class="form-group">
+            <select name="symbol" class="form-control" required>
+                {% if not sentSymbol %}
+                    <option selected disabled>Symbol</option>
+                    {% for row in rows %}
+                    <option value="{{ row["symbol"] }}">{{ row["symbol"] }}</option>
+                    {% endfor %}
+                {% else %}
+                    <option selected>{{ sentSymbol }}</option>
+                    {% for row in rows %}
+                    <option value="{{ row["symbol"] }}">{{ row["symbol"] }}</option>
+                    {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="number" name="shares" class="form-control" placeholder="Shares" autocomplete="off" min="1" required>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Sell</button>
+        </div>
+    </form>
+{% endblock %}

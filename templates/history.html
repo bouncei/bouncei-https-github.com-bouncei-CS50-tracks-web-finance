@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div>
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th scope="col">Symbol</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Shares</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Transacted</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <td>{{ row["symbol"] }}</td>
+                    <td>{{ row["name"] }}</td>
+                    <td>{{ row["shares"] }}</td>
+                    <td>${{ row["price"]|round(2) }}</td>
+                    <td>${{ row["total"]|round(2) }}</td>
+                    <td>{{ row["datetime"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
